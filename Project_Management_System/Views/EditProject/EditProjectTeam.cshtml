@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Project_Management_System.Models.Project_Team>
+
+@{
+    ViewBag.Title = "EditProjectTeam";
+}
+
+<p>
+    @Html.ActionLink("ADD", "AddProjectTeamt", new { id = ViewBag.projectID }, new { @class = " btn btn-success" })
+</p>
+<div class="panel panel-primary setup-content">
+    <h3 class="text-center subheader"><strong>Project Team</strong></h3>
+    <div class="panel-body ">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayName("TeamMemberID")
+                </th>
+                <th>
+                    @Html.DisplayName("Email")
+                </th>
+                <th>
+                    @Html.DisplayName("Project_Role")
+                </th>
+                <th>
+                    @Html.DisplayName("Responsebility")
+                </th>
+                <th>
+                    @Html.DisplayName("ProjectID")
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.T_ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.T_Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.T_Role)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.T_Responsebility)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.P_ID)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-primary" }) |
+
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+        @Html.ActionLink("Next", "listStakeholders", new { id = ViewBag.projectID }, new { @class = "btn btn-success" })
+    </div>
+
+</div>

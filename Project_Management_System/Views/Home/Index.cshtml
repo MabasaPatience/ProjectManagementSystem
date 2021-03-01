@@ -1,0 +1,64 @@
+﻿@model IPagedList<Project_Management_System.Models.Project>
+
+@{
+               
+                ViewBag.Title = "Index";
+}
+@using PagedList.Mvc;
+@using PagedList;
+<p class="">
+    @using (Html.BeginForm())
+    {
+
+        @Html.TextBox("Search")<input type="Submit" value="Search" />
+    }
+</p>
+
+<div class="panel  setup-content " id="step-1">
+
+    <div class="panel-body">
+        <table class="table table-striped  table-hover ">
+            <thead class="tf">
+                <tr>
+                    <th> @Html.DisplayName("Project ID")</th>
+                    <th>
+                        @Html.DisplayName("Project name")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Date")
+                    </th>
+
+
+                    <th class="text-center"></th>
+                </tr>
+            </thead>
+
+
+
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.P_ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.P_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date_Created)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Edit", "EditProject", "EditProject", new { id = item.P_ID }, new { @class = "btn btn-info" })  |
+                        @Html.ActionLink("View", "Report", "Report", new { id = item.P_ID }, new { @class = "btn btn-success" }) |
+                        @Html.ActionLink("Delete", "Index", "Delete", new { id = item.P_ID }, new { @class = "btn red" })
+                    </td>
+                </tr>
+            }
+
+
+        </table>
+        @Html.PagedListPager(Model, i => Url.Action("Index", "Home", new { i, search = Request.QueryString["search"] }))
+    </div>
+</div>

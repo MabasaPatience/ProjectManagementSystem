@@ -1,0 +1,56 @@
+﻿@model Project_Management_System.Models.Project
+
+@{
+    ViewBag.Title = "EditProject";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Project</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.P_ID)
+        <div class="panel panel-primary setup-content">
+            <h3 class="text-center subheader"><strong>Project Manager</strong></h3>
+            <div class="panel-body ">
+                <div class="form-group">
+                    @Html.Label("Projecct name", htmlAttributes: new { @class = " col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.P_Name, new { htmlAttributes = new { @class = "form-control ", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.P_Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Date", htmlAttributes: new { @class = " col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Date_Created, new { htmlAttributes = new { @class = "form-control ", @type = "date", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.Date_Created, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("User ID", htmlAttributes: new { @class = " col-md-3 " })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.UserID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        @Html.ActionLink("Next", "EditProjectDetails", "EditProject", new { id = Model.P_ID }, new { @class = "btn btn-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

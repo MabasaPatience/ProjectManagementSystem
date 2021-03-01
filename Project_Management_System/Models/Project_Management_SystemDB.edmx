@@ -1,0 +1,426 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Project_Management_SystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="First_name" Type="varchar" MaxLength="100" />
+          <Property Name="Last_Name" Type="varchar" MaxLength="100" />
+          <Property Name="Email" Type="varchar" MaxLength="150" />
+          <Property Name="Phone_number" Type="bigint" />
+          <Property Name="Passwords" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Cost_Estimation">
+          <Key>
+            <PropertyRef Name="R_ID" />
+          </Key>
+          <Property Name="R_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="R_name" Type="varchar" MaxLength="100" />
+          <Property Name="R_cost" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="Total_Cost" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="P_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="P_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="P_Name" Type="varchar" MaxLength="150" />
+          <Property Name="Date_Created" Type="date" />
+          <Property Name="UserID" Type="int" />
+        </EntityType>
+        <EntityType Name="Project_Details">
+          <Key>
+            <PropertyRef Name="P_Detail_ID" />
+          </Key>
+          <Property Name="P_Detail_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="P_Scope" Type="varchar" MaxLength="100" />
+          <Property Name="P_Description" Type="varchar" MaxLength="100" />
+          <Property Name="P_Objective" Type="varchar" MaxLength="150" />
+          <Property Name="P_Goals" Type="varchar" MaxLength="150" />
+          <Property Name="P_Oppotunities" Type="varchar" MaxLength="100" />
+          <Property Name="P_StartDate" Type="date" />
+          <Property Name="P_EndDate" Type="date" />
+          <Property Name="P_Duration" Type="int" />
+          <Property Name="P_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Project_Stakeholder">
+          <Key>
+            <PropertyRef Name="S_ID" />
+          </Key>
+          <Property Name="S_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="S_Fullname" Type="varchar" MaxLength="150" />
+          <Property Name="S_Email" Type="varchar" MaxLength="100" />
+          <Property Name="P_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Project_Team">
+          <Key>
+            <PropertyRef Name="T_ID" />
+          </Key>
+          <Property Name="T_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="T_Email" Type="varchar" MaxLength="100" />
+          <Property Name="T_Role" Type="varchar" MaxLength="150" />
+          <Property Name="T_Responsebility" Type="varchar" MaxLength="100" />
+          <Property Name="P_ID" Type="int" />
+        </EntityType>
+        <Association Name="FK__Cost_Estim__P_ID__5EBF139D">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="Cost_Estimation" Type="Self.Cost_Estimation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="Cost_Estimation">
+              <PropertyRef Name="P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Project__UserID__4E88ABD4">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="Project" Type="Self.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Project_De__P_ID__5441852A">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="Project_Details" Type="Self.Project_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="Project_Details">
+              <PropertyRef Name="P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Project_St__P_ID__59FA5E80">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="Project_Stakeholder" Type="Self.Project_Stakeholder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="Project_Stakeholder">
+              <PropertyRef Name="P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Project_Te__P_ID__571DF1D5">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="Project_Team" Type="Self.Project_Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="Project_Team">
+              <PropertyRef Name="P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Project_Management_SystemModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cost_Estimation" EntityType="Self.Cost_Estimation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project_Details" EntityType="Self.Project_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project_Stakeholder" EntityType="Self.Project_Stakeholder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project_Team" EntityType="Self.Project_Team" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Cost_Estim__P_ID__5EBF139D" Association="Self.FK__Cost_Estim__P_ID__5EBF139D">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Cost_Estimation" EntitySet="Cost_Estimation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Project__UserID__4E88ABD4" Association="Self.FK__Project__UserID__4E88ABD4">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Project" EntitySet="Project" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Project_De__P_ID__5441852A" Association="Self.FK__Project_De__P_ID__5441852A">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Project_Details" EntitySet="Project_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Project_St__P_ID__59FA5E80" Association="Self.FK__Project_St__P_ID__59FA5E80">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Project_Stakeholder" EntitySet="Project_Stakeholder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Project_Te__P_ID__571DF1D5" Association="Self.FK__Project_Te__P_ID__571DF1D5">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Project_Team" EntitySet="Project_Team" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Project_Management_SystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="First_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Phone_number" Type="Int64" />
+          <Property Name="Passwords" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Projects" Relationship="Self.FK__Project__UserID__4E88ABD4" FromRole="Account" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="Cost_Estimation">
+          <Key>
+            <PropertyRef Name="R_ID" />
+          </Key>
+          <Property Name="R_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="R_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="R_cost" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="Total_Cost" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="P_ID" Type="Int32" />
+          <NavigationProperty Name="Project" Relationship="Self.FK__Cost_Estim__P_ID__5EBF139D" FromRole="Cost_Estimation" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="P_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="P_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Date_Created" Type="DateTime" Precision="0" />
+          <Property Name="UserID" Type="Int32" />
+          <NavigationProperty Name="Account" Relationship="Self.FK__Project__UserID__4E88ABD4" FromRole="Project" ToRole="Account" />
+          <NavigationProperty Name="Cost_Estimation" Relationship="Self.FK__Cost_Estim__P_ID__5EBF139D" FromRole="Project" ToRole="Cost_Estimation" />
+          <NavigationProperty Name="Project_Details" Relationship="Self.FK__Project_De__P_ID__5441852A" FromRole="Project" ToRole="Project_Details" />
+          <NavigationProperty Name="Project_Stakeholder" Relationship="Self.FK__Project_St__P_ID__59FA5E80" FromRole="Project" ToRole="Project_Stakeholder" />
+          <NavigationProperty Name="Project_Team" Relationship="Self.FK__Project_Te__P_ID__571DF1D5" FromRole="Project" ToRole="Project_Team" />
+        </EntityType>
+        <EntityType Name="Project_Details">
+          <Key>
+            <PropertyRef Name="P_Detail_ID" />
+          </Key>
+          <Property Name="P_Detail_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="P_Scope" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="P_Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="P_Objective" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="P_Goals" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="P_Oppotunities" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="P_StartDate" Type="DateTime" Precision="0" />
+          <Property Name="P_EndDate" Type="DateTime" Precision="0" />
+          <Property Name="P_Duration" Type="Int32" />
+          <Property Name="P_ID" Type="Int32" />
+          <NavigationProperty Name="Project" Relationship="Self.FK__Project_De__P_ID__5441852A" FromRole="Project_Details" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="Project_Stakeholder">
+          <Key>
+            <PropertyRef Name="S_ID" />
+          </Key>
+          <Property Name="S_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="S_Fullname" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="S_Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="P_ID" Type="Int32" />
+          <NavigationProperty Name="Project" Relationship="Self.FK__Project_St__P_ID__59FA5E80" FromRole="Project_Stakeholder" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="Project_Team">
+          <Key>
+            <PropertyRef Name="T_ID" />
+          </Key>
+          <Property Name="T_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="T_Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="T_Role" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="T_Responsebility" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="P_ID" Type="Int32" />
+          <NavigationProperty Name="Project" Relationship="Self.FK__Project_Te__P_ID__571DF1D5" FromRole="Project_Team" ToRole="Project" />
+        </EntityType>
+        <Association Name="FK__Project__UserID__4E88ABD4">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="Project" Type="Self.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cost_Estim__P_ID__5EBF139D">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="Cost_Estimation" Type="Self.Cost_Estimation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="Cost_Estimation">
+              <PropertyRef Name="P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Project_De__P_ID__5441852A">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="Project_Details" Type="Self.Project_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="Project_Details">
+              <PropertyRef Name="P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Project_St__P_ID__59FA5E80">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="Project_Stakeholder" Type="Self.Project_Stakeholder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="Project_Stakeholder">
+              <PropertyRef Name="P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Project_Te__P_ID__571DF1D5">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="Project_Team" Type="Self.Project_Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="P_ID" />
+            </Principal>
+            <Dependent Role="Project_Team">
+              <PropertyRef Name="P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Project_Management_SystemEntitiesDB" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="Cost_Estimation" EntityType="Self.Cost_Estimation" />
+          <EntitySet Name="Projects" EntityType="Self.Project" />
+          <EntitySet Name="Project_Details" EntityType="Self.Project_Details" />
+          <EntitySet Name="Project_Stakeholder" EntityType="Self.Project_Stakeholder" />
+          <EntitySet Name="Project_Team" EntityType="Self.Project_Team" />
+          <AssociationSet Name="FK__Project__UserID__4E88ABD4" Association="Self.FK__Project__UserID__4E88ABD4">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cost_Estim__P_ID__5EBF139D" Association="Self.FK__Cost_Estim__P_ID__5EBF139D">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Cost_Estimation" EntitySet="Cost_Estimation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Project_De__P_ID__5441852A" Association="Self.FK__Project_De__P_ID__5441852A">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Project_Details" EntitySet="Project_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Project_St__P_ID__59FA5E80" Association="Self.FK__Project_St__P_ID__59FA5E80">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Project_Stakeholder" EntitySet="Project_Stakeholder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Project_Te__P_ID__571DF1D5" Association="Self.FK__Project_Te__P_ID__571DF1D5">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Project_Team" EntitySet="Project_Team" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Project_Management_SystemModelStoreContainer" CdmEntityContainer="Project_Management_SystemEntitiesDB">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="Project_Management_SystemModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="First_name" ColumnName="First_name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone_number" ColumnName="Phone_number" />
+                <ScalarProperty Name="Passwords" ColumnName="Passwords" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cost_Estimation">
+            <EntityTypeMapping TypeName="Project_Management_SystemModel.Cost_Estimation">
+              <MappingFragment StoreEntitySet="Cost_Estimation">
+                <ScalarProperty Name="R_ID" ColumnName="R_ID" />
+                <ScalarProperty Name="R_name" ColumnName="R_name" />
+                <ScalarProperty Name="R_cost" ColumnName="R_cost" />
+                <ScalarProperty Name="Total_Cost" ColumnName="Total_Cost" />
+                <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="Project_Management_SystemModel.Project">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+                <ScalarProperty Name="P_Name" ColumnName="P_Name" />
+                <ScalarProperty Name="Date_Created" ColumnName="Date_Created" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Project_Details">
+            <EntityTypeMapping TypeName="Project_Management_SystemModel.Project_Details">
+              <MappingFragment StoreEntitySet="Project_Details">
+                <ScalarProperty Name="P_Detail_ID" ColumnName="P_Detail_ID" />
+                <ScalarProperty Name="P_Scope" ColumnName="P_Scope" />
+                <ScalarProperty Name="P_Description" ColumnName="P_Description" />
+                <ScalarProperty Name="P_Objective" ColumnName="P_Objective" />
+                <ScalarProperty Name="P_Goals" ColumnName="P_Goals" />
+                <ScalarProperty Name="P_Oppotunities" ColumnName="P_Oppotunities" />
+                <ScalarProperty Name="P_StartDate" ColumnName="P_StartDate" />
+                <ScalarProperty Name="P_EndDate" ColumnName="P_EndDate" />
+                <ScalarProperty Name="P_Duration" ColumnName="P_Duration" />
+                <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Project_Stakeholder">
+            <EntityTypeMapping TypeName="Project_Management_SystemModel.Project_Stakeholder">
+              <MappingFragment StoreEntitySet="Project_Stakeholder">
+                <ScalarProperty Name="S_ID" ColumnName="S_ID" />
+                <ScalarProperty Name="S_Fullname" ColumnName="S_Fullname" />
+                <ScalarProperty Name="S_Email" ColumnName="S_Email" />
+                <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Project_Team">
+            <EntityTypeMapping TypeName="Project_Management_SystemModel.Project_Team">
+              <MappingFragment StoreEntitySet="Project_Team">
+                <ScalarProperty Name="T_ID" ColumnName="T_ID" />
+                <ScalarProperty Name="T_Email" ColumnName="T_Email" />
+                <ScalarProperty Name="T_Role" ColumnName="T_Role" />
+                <ScalarProperty Name="T_Responsebility" ColumnName="T_Responsebility" />
+                <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

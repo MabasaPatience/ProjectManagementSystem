@@ -1,0 +1,47 @@
+body {
+    background-color: black;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+}
+
+.trans a {
+    color: black;
+}
+
+.dash {
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.col-md-6 {
+    height: 520px;
+}
+
+.small-box {
+    width: 80%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    border: 3px solid;
+    border-radius: 15px;
+    font-size: 10vw;
+    font-weight: bolder;
+    color: black;
+}
+
+.trans:hover {
+    opacity: 10px;
+    cursor: pointer;
+    transform: scale(1.03)
+}
+
+.trans a:hover,
+.small-box:hover {
+    color: rgb(200, 255, 0);
+    text-decoration: none;
+}

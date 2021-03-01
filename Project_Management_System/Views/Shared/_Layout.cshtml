@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+  
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body >
+    <div class="navbar "style="background-color:cadetblue">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Project Management System", "Index", "Home", new { area = "" }, new { @class = "navbar-brand n" })
+            </div>
+            <div class="navbar-collapse collapse">
+                
+                <ul class="nav navbar-right">
+                    <h5 style="color:white">@ViewBag.UserName</h5>
+                    @Html.ActionLink("Logout", "Logout", new { @class = "bgn" })
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content ">
+        <div class="row">
+            <div class="col-md-2"style="background-color:cadetblue;height:600px">
+                <div class="sidebar content-box " style="display: block;">
+                    <ul class="nav">
+                        <li><i class="glyphicon glyphicon-home "style="color:white">&nbsp;@Html.ActionLink("Deshboard", "AddProject", "AddProject", new { @class = " n" })</i></li>
+                        <li><i class="glyphicon glyphicon-pencil "style="color:white">&nbsp;@Html.ActionLink("Create","AddProject", "AddProject", "AddProject", new { @class = "n" })</i></li>
+
+                        <li><i class="glyphicon glyphicon-tasks"style="color:white">&nbsp;@Html.ActionLink("View Project", "Index","DisplayProject", "DisplayProject", new { @class = " n" })</i></li>
+                        <li><i class="glyphicon glyphicon-tasks"style="color:white">&nbsp;@Html.ActionLink("Active Project", "Index", "DisplayProject", new { @class = " n" })</i></li>
+                        <li class="submenu">
+                            <a href="#">
+                                <i class="glyphicon glyphicon-user"></i> Account
+                                <span class="caret pull-right"></span>
+                            </a>
+                            <!-- Sub menu -->
+                            <ul>
+                                <li><a href="#">Profile</a></li>
+                                <li><a href="/loginSignupForm.html">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!--right side-->
+
+            <div class="col-md-10"id="t";height:600px">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+
+
+    @*RenderBody() *@
+
+    <footer class="bg-primary">
+        <div class="container">
+
+            <div class="copy text-center" >
+                Copyright 2020 <a href='#'>Project Management</a>
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

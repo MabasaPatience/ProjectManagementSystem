@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Project_Management_System.Models.Project>
+
+@{
+    ViewBag.Title = "DisplayProject";
+}
+
+<h2>DisplayProject</h2>
+
+
+<table class="table">
+    <thead class="" style="background-color:goldenrod">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.P_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.P_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date_Created)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserID)
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.P_ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.P_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date_Created)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserID)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+
+</table>

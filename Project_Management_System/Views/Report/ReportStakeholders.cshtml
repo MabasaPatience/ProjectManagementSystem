@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Project_Management_System.Models.Project_Stakeholder>
+
+@{
+    ViewBag.Title = "ReportStakeholders";
+}
+
+
+
+
+<table class="table table-striped  table-hover ">
+    <thead class="tf">
+        <tr>
+            <th>
+                @Html.DisplayName("ID")
+            </th>
+            <th>
+                @Html.Display("Fullname")
+            </th>
+            <th>
+                @Html.DisplayName("Email")
+            </th>         
+        </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.S_ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.S_Fullname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.S_Email)
+                </td>
+               
+                
+            </tr>
+        }
+
+</table>
+<p>
+    @Html.ActionLink("Back", "ReportTeam", new { id = ViewBag.ProjectID }, new { @class = "btn red" }) |
+    @Html.ActionLink("Next", "ReportResources", new { id = ViewBag.ProjectID }, new { @class = "btn btn-info" })
+</p>

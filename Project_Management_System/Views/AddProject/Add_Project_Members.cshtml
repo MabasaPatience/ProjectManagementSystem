@@ -1,0 +1,65 @@
+﻿@model Project_Management_System.Models.Project_Team
+
+@{
+    ViewBag.Title = "Add_Project_Members";
+}
+
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h3 class="text-center subheader"><strong>Project Members</strong></h3>
+   
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="panel  setup-content" id="ddd">
+        
+        <div class="panel-body ">
+
+
+            <div class="form-group">
+                @Html.Label("Email", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.T_Email, new SelectList(Model.Acccc, "Email", "Email"), "--select--", new { @class = "form-control" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.Label("Role", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.T_Role, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.T_Role, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Responsebility", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.T_Responsebility, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.T_Responsebility, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+           
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

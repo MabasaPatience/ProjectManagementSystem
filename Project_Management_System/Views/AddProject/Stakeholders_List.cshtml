@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Project_Management_System.Models.Project_Stakeholder>
+
+@{
+    ViewBag.Title = "Stakeholders_List";
+}
+
+
+
+<p>
+    @Html.ActionLink("Add Project Stakeholsers", "Add_Project_Stakeholsers", new { id = ViewBag.projectID }, new { @class = " btn btn-success" })
+</p>
+<div class="panel panel-primary setup-content">
+    <h3 class="text-center subheader"><strong>Project Stakeholders</strong></h3>
+    <div class="panel-body ">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.S_ID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.S_Fullname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.S_Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.P_ID)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.S_ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.S_Fullname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.S_Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.P_ID)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+            }
+
+        </table>
+        @Html.ActionLink("Next", "Project_Cost_List", new { id = ViewBag.projectID }, new { @class = "btn btn-success" })
+    </div>
+</div>

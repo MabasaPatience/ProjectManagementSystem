@@ -1,0 +1,85 @@
+﻿@model Project_Management_System.Models.Project_Forms
+
+@{
+    ViewBag.Title = "Report";
+}
+
+<div class="panel panel-primary setup-content " id="step-1">
+   
+    <div class="panel-body">
+        <div>
+
+            
+            <dl class="dl-horizontal">
+
+
+                @Html.Label("Project ID", htmlAttributes: new { @class = "control-label  col-md-4" })
+
+                @Html.DisplayFor(model => model.Project_Project_Forms.P_ID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Project_Project_Forms.P_ID, "", new { @class = "text-danger" })
+            </dl>
+            <hr />
+
+            <dl class="dl-horizontal">
+                @Html.Label("Project Name", htmlAttributes: new { @class = "control-label  col-md-4" })
+
+                @Html.DisplayFor(model => model.Project_Project_Forms.P_Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Project_Project_Forms.P_ID, "", new { @class = "text-danger" })
+            </dl>
+            <hr />
+            <dl class="dl-horizontal">
+                @Html.Label("Project Scope", htmlAttributes: new { @class = "control-label  col-md-4" })
+
+                @Html.DisplayFor(model => model.ProjectDetails_Project_Forms.P_Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProjectDetails_Project_Forms.P_Description, "", new { @class = "text-danger" })
+            </dl>
+            <hr />
+            <dl class="dl-horizontal">
+                @Html.Label("Project discription", htmlAttributes: new { @class = "control-label  col-md-4" })
+
+                @Html.DisplayFor(model => model.ProjectDetails_Project_Forms.P_Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProjectDetails_Project_Forms.P_Description, "", new { @class = "text-danger" })
+            </dl>
+            <hr />
+            <dl class="dl-horizontal">
+                @Html.Label("Project Objective", htmlAttributes: new { @class = "control-label  col-md-4" })
+
+                @Html.DisplayFor(model => model.ProjectDetails_Project_Forms.P_Objective, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProjectDetails_Project_Forms.P_Objective, "", new { @class = "text-danger" })
+            </dl><hr />
+            <dl class="dl-horizontal">
+                @Html.Label("Project goal", htmlAttributes: new { @class = "control-label  col-md-4" })
+
+                @Html.DisplayFor(model => model.ProjectDetails_Project_Forms.P_Goals, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProjectDetails_Project_Forms.P_Goals, "", new { @class = "text-danger" })
+            </dl><hr />
+            <dl class="dl-horizontal">
+                @Html.Label("Project oppotunity", htmlAttributes: new { @class = "control-label  col-md-4" })
+
+                @Html.DisplayFor(model => model.ProjectDetails_Project_Forms.P_Oppotunities, new { htmlAttributes = new { @class = "form-control bg-info" } })
+                @Html.ValidationMessageFor(model => model.ProjectDetails_Project_Forms.P_Oppotunities, "", new { @class = "text-danger" })
+            </dl><hr />
+            <dl class="dl-horizontal">
+                @Html.Label("Project Start date", htmlAttributes: new { @class = "control-label  col-md-4" })
+
+                @Html.DisplayFor(model => model.ProjectDetails_Project_Forms.P_StartDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProjectDetails_Project_Forms.P_StartDate, "", new { @class = "text-danger" })
+            </dl><hr />
+            <dl class="dl-horizontal">
+                @Html.Label("Project End Date", htmlAttributes: new { @class = "control-label  col-md-4" })
+
+                @Html.DisplayFor(model => model.ProjectDetails_Project_Forms.P_EndDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProjectDetails_Project_Forms.P_EndDate, "", new { @class = "text-danger" })
+            </dl>
+            
+
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("Back to List", "Index", new { @class = "btn red" }) |
+        @Html.ActionLink("Next", "ReportTeam", new { id = Model.Project_Project_Forms.P_ID }, new { @class = "btn btn-info" }) |
+
+    </p>
+
+</div>
+

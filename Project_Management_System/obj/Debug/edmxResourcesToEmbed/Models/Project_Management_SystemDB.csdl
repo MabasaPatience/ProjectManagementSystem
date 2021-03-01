@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Project_Management_SystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="First_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Last_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Phone_number" Type="Int64" />
+    <Property Name="Passwords" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Projects" Relationship="Self.FK__Project__UserID__4E88ABD4" FromRole="Account" ToRole="Project" />
+  </EntityType>
+  <EntityType Name="Cost_Estimation">
+    <Key>
+      <PropertyRef Name="R_ID" />
+    </Key>
+    <Property Name="R_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="R_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="R_cost" Type="Decimal" Precision="13" Scale="2" />
+    <Property Name="Total_Cost" Type="Decimal" Precision="13" Scale="2" />
+    <Property Name="P_ID" Type="Int32" />
+    <NavigationProperty Name="Project" Relationship="Self.FK__Cost_Estim__P_ID__5EBF139D" FromRole="Cost_Estimation" ToRole="Project" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="P_ID" />
+    </Key>
+    <Property Name="P_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="P_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Date_Created" Type="DateTime" Precision="0" />
+    <Property Name="UserID" Type="Int32" />
+    <NavigationProperty Name="Account" Relationship="Self.FK__Project__UserID__4E88ABD4" FromRole="Project" ToRole="Account" />
+    <NavigationProperty Name="Cost_Estimation" Relationship="Self.FK__Cost_Estim__P_ID__5EBF139D" FromRole="Project" ToRole="Cost_Estimation" />
+    <NavigationProperty Name="Project_Details" Relationship="Self.FK__Project_De__P_ID__5441852A" FromRole="Project" ToRole="Project_Details" />
+    <NavigationProperty Name="Project_Stakeholder" Relationship="Self.FK__Project_St__P_ID__59FA5E80" FromRole="Project" ToRole="Project_Stakeholder" />
+    <NavigationProperty Name="Project_Team" Relationship="Self.FK__Project_Te__P_ID__571DF1D5" FromRole="Project" ToRole="Project_Team" />
+  </EntityType>
+  <EntityType Name="Project_Details">
+    <Key>
+      <PropertyRef Name="P_Detail_ID" />
+    </Key>
+    <Property Name="P_Detail_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="P_Scope" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="P_Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="P_Objective" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="P_Goals" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="P_Oppotunities" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="P_StartDate" Type="DateTime" Precision="0" />
+    <Property Name="P_EndDate" Type="DateTime" Precision="0" />
+    <Property Name="P_Duration" Type="Int32" />
+    <Property Name="P_ID" Type="Int32" />
+    <NavigationProperty Name="Project" Relationship="Self.FK__Project_De__P_ID__5441852A" FromRole="Project_Details" ToRole="Project" />
+  </EntityType>
+  <EntityType Name="Project_Stakeholder">
+    <Key>
+      <PropertyRef Name="S_ID" />
+    </Key>
+    <Property Name="S_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="S_Fullname" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="S_Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="P_ID" Type="Int32" />
+    <NavigationProperty Name="Project" Relationship="Self.FK__Project_St__P_ID__59FA5E80" FromRole="Project_Stakeholder" ToRole="Project" />
+  </EntityType>
+  <EntityType Name="Project_Team">
+    <Key>
+      <PropertyRef Name="T_ID" />
+    </Key>
+    <Property Name="T_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="T_Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="T_Role" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="T_Responsebility" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="P_ID" Type="Int32" />
+    <NavigationProperty Name="Project" Relationship="Self.FK__Project_Te__P_ID__571DF1D5" FromRole="Project_Team" ToRole="Project" />
+  </EntityType>
+  <Association Name="FK__Project__UserID__4E88ABD4">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Project" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Cost_Estim__P_ID__5EBF139D">
+    <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+    <End Role="Cost_Estimation" Type="Self.Cost_Estimation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="P_ID" />
+      </Principal>
+      <Dependent Role="Cost_Estimation">
+        <PropertyRef Name="P_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Project_De__P_ID__5441852A">
+    <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+    <End Role="Project_Details" Type="Self.Project_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="P_ID" />
+      </Principal>
+      <Dependent Role="Project_Details">
+        <PropertyRef Name="P_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Project_St__P_ID__59FA5E80">
+    <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+    <End Role="Project_Stakeholder" Type="Self.Project_Stakeholder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="P_ID" />
+      </Principal>
+      <Dependent Role="Project_Stakeholder">
+        <PropertyRef Name="P_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Project_Te__P_ID__571DF1D5">
+    <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+    <End Role="Project_Team" Type="Self.Project_Team" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="P_ID" />
+      </Principal>
+      <Dependent Role="Project_Team">
+        <PropertyRef Name="P_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Project_Management_SystemEntitiesDB" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="Self.Account" />
+    <EntitySet Name="Cost_Estimation" EntityType="Self.Cost_Estimation" />
+    <EntitySet Name="Projects" EntityType="Self.Project" />
+    <EntitySet Name="Project_Details" EntityType="Self.Project_Details" />
+    <EntitySet Name="Project_Stakeholder" EntityType="Self.Project_Stakeholder" />
+    <EntitySet Name="Project_Team" EntityType="Self.Project_Team" />
+    <AssociationSet Name="FK__Project__UserID__4E88ABD4" Association="Self.FK__Project__UserID__4E88ABD4">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Project" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Cost_Estim__P_ID__5EBF139D" Association="Self.FK__Cost_Estim__P_ID__5EBF139D">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="Cost_Estimation" EntitySet="Cost_Estimation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Project_De__P_ID__5441852A" Association="Self.FK__Project_De__P_ID__5441852A">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="Project_Details" EntitySet="Project_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Project_St__P_ID__59FA5E80" Association="Self.FK__Project_St__P_ID__59FA5E80">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="Project_Stakeholder" EntitySet="Project_Stakeholder" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Project_Te__P_ID__571DF1D5" Association="Self.FK__Project_Te__P_ID__571DF1D5">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="Project_Team" EntitySet="Project_Team" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

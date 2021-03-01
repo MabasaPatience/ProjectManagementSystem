@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Project_Management_System.Models.Cost_Estimation>
+
+@{
+    ViewBag.Title = "Project_Cost_List";
+}
+
+
+
+<p>
+    @Html.ActionLink("Create New", "ProjectCost", new { id = ViewBag.projectID }, new { @class = " btn btn-success" })
+</p>
+<div class="panel panel-primary setup-content">
+    <h3 class="text-center subheader"><strong>Project Cost</strong></h3>
+    <div class="panel-body ">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayName("ID")
+                </th>
+                <th>
+                    @Html.DisplayName("Name")
+                </th>
+                <th>
+                    @Html.DisplayName("Cost")
+                </th>
+                <th>
+                    @Html.DisplayName("Total Cost")
+                </th>
+                
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.R_ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.R_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.R_cost)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Total_Cost)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.P_ID)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+            }
+
+        </table>
+        @Html.ActionLink("Finish", "index", "Home",new { id = ViewBag.Userid }, new { @class = "btn btn-success" })
+    </div>
+</div>

@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Project_Management_SystemModelStoreContainer" CdmEntityContainer="Project_Management_SystemEntitiesDB">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="Project_Management_SystemModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="First_name" ColumnName="First_name" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone_number" ColumnName="Phone_number" />
+          <ScalarProperty Name="Passwords" ColumnName="Passwords" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cost_Estimation">
+      <EntityTypeMapping TypeName="Project_Management_SystemModel.Cost_Estimation">
+        <MappingFragment StoreEntitySet="Cost_Estimation">
+          <ScalarProperty Name="R_ID" ColumnName="R_ID" />
+          <ScalarProperty Name="R_name" ColumnName="R_name" />
+          <ScalarProperty Name="R_cost" ColumnName="R_cost" />
+          <ScalarProperty Name="Total_Cost" ColumnName="Total_Cost" />
+          <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Projects">
+      <EntityTypeMapping TypeName="Project_Management_SystemModel.Project">
+        <MappingFragment StoreEntitySet="Project">
+          <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+          <ScalarProperty Name="P_Name" ColumnName="P_Name" />
+          <ScalarProperty Name="Date_Created" ColumnName="Date_Created" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Project_Details">
+      <EntityTypeMapping TypeName="Project_Management_SystemModel.Project_Details">
+        <MappingFragment StoreEntitySet="Project_Details">
+          <ScalarProperty Name="P_Detail_ID" ColumnName="P_Detail_ID" />
+          <ScalarProperty Name="P_Scope" ColumnName="P_Scope" />
+          <ScalarProperty Name="P_Description" ColumnName="P_Description" />
+          <ScalarProperty Name="P_Objective" ColumnName="P_Objective" />
+          <ScalarProperty Name="P_Goals" ColumnName="P_Goals" />
+          <ScalarProperty Name="P_Oppotunities" ColumnName="P_Oppotunities" />
+          <ScalarProperty Name="P_StartDate" ColumnName="P_StartDate" />
+          <ScalarProperty Name="P_EndDate" ColumnName="P_EndDate" />
+          <ScalarProperty Name="P_Duration" ColumnName="P_Duration" />
+          <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Project_Stakeholder">
+      <EntityTypeMapping TypeName="Project_Management_SystemModel.Project_Stakeholder">
+        <MappingFragment StoreEntitySet="Project_Stakeholder">
+          <ScalarProperty Name="S_ID" ColumnName="S_ID" />
+          <ScalarProperty Name="S_Fullname" ColumnName="S_Fullname" />
+          <ScalarProperty Name="S_Email" ColumnName="S_Email" />
+          <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Project_Team">
+      <EntityTypeMapping TypeName="Project_Management_SystemModel.Project_Team">
+        <MappingFragment StoreEntitySet="Project_Team">
+          <ScalarProperty Name="T_ID" ColumnName="T_ID" />
+          <ScalarProperty Name="T_Email" ColumnName="T_Email" />
+          <ScalarProperty Name="T_Role" ColumnName="T_Role" />
+          <ScalarProperty Name="T_Responsebility" ColumnName="T_Responsebility" />
+          <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

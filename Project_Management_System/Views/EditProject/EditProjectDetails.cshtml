@@ -1,0 +1,111 @@
+﻿@model Project_Management_System.Models.Project_Details
+
+@{
+    ViewBag.Title = "EditProjectDetails";
+}
+
+<div class="panel panel-primary setup-content">
+    <h3 class="text-center subheader"><strong>Project Manager</strong></h3>
+    <div class="panel-body ">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    @Html.Label("Project id", htmlAttributes: new { @class = "col-md-3  read-only" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.P_Detail_ID, new { htmlAttributes = new { @class = "form-control read-only" } })
+                        @Html.ValidationMessageFor(model => model.P_Detail_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Scope -max 250 words", htmlAttributes: new { @class = "col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.P_Scope, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.P_Scope, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Description -max 250 words", htmlAttributes: new { @class = "col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.P_Description, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.P_Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Objective -max 250 words ", htmlAttributes: new { @class = "col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.P_Objective, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.P_Objective, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Goals", htmlAttributes: new { @class = " col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.P_Goals, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.P_Goals, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Oppotunities", htmlAttributes: new { @class = "col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.P_Oppotunities, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.P_Oppotunities, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("StartDate -max 250 words", htmlAttributes: new { @class = "col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.P_StartDate, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.P_StartDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("EndDate -max 250 words", htmlAttributes: new { @class = "col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.P_EndDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.P_EndDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Duration", htmlAttributes: new { @class = " col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.P_Duration, new { htmlAttributes = new { @class = "form-control read-only" } })
+                        @Html.ValidationMessageFor(model => model.P_Duration, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("ProjectID", htmlAttributes: new { @class = "col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.P_ID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.P_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        @Html.ActionLink("Next", "Project_Team_List", "AddProject", new { id = Model.P_ID }, new { @class = "btn btn-danger" })
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
